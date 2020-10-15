@@ -40,8 +40,9 @@ $string['sendtoemail'] = 'Envoyer à (email)';
 $string['sendtoemail_desc'] = 'Email vers qui on va envoyer le contenu du formulaire (email du support)';
 $string['emailcontentsupport'] = '
 <p>[sendtoname],</p>
-<p>Un message a été envoyé via le formulaire de contact par "[sendername]"([senderemail]).</p>
-<p>Du site [sitefullname] <a href="[siteurl]">[siteurl]</a></p>
+<p>Un message a été envoyé via le formulaire de contact - du site [sitefullname] <a href="[siteurl]">[siteurl]</a></p>
+<p>De: "[sendername]" - [senderemail]</p>
+<p>Sujet: [subject]</p>
 <hr>';
 
 $string['emailcontentsupportsubject'] = '[sitefullname] - Contact par "[sendername]"<[senderemail]>';

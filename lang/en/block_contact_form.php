@@ -40,8 +40,10 @@ $string['sendtoemail'] = 'Send to email';
 $string['sendtoemail_desc'] = 'Email to which we will send the content on the contact form';
 $string['emailcontentsupport'] = '
 <p>Dear [sendtoname],</p>
-<p>A message has been sent through the contact form by "[sendername]"([senderemail]).</p>
-<p>From the site [sitefullname] <a href="[siteurl]">[siteurl]</a></p>
+<p>A message has been sent through the contact form. From the site [sitefullname] <a href="[siteurl]">[siteurl]</a></p>
+<p>From: "[sendername]" - [senderemail]</p>
+<p>Subject: [subject]</p>
+
 <hr>';
 
 $string['emailcontentsupportsubject'] = '[sitefullname] - Contact from "[sendername]"<[senderemail]>';

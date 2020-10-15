@@ -40,6 +40,8 @@ class email_sender {
     protected $noreplyuser;
     protected $toemail;
     protected $toname;
+    protected $fromname;
+    protected $fromemail;
     protected $subject;
     protected $message;
 
@@ -63,6 +65,8 @@ class email_sender {
         if ($config->sendtoname) {
             $this->toname = $config->sendtoname;
         }
+        $this->fromname = $formdata->name;
+        $this->fromemail = $formdata->email;
         $this->subject = clean_param($formdata->subject, PARAM_TEXT);
         $this->message = clean_param($formdata->message, PARAM_TEXT);
         $this->noreplyuser = $noreplyuser;
@@ -82,8 +86,8 @@ class email_sender {
             '[subject]', '[lang]', '[userip]', '[sitefullname]', '[siteshortname]', '[siteurl]',
             '[http_user_agent]', '[http_referer]'
         );
-        $info = array(fullname($this->noreplyuser),
-            $this->noreplyuser->email,
+        $info = array( $this->fromname,
+            $this->fromemail,
             $this->toname,
             $this->toemail,
             $this->subject,
