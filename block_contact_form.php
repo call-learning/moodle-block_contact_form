@@ -35,6 +35,7 @@ class block_contact_form extends block_base {
 
     /**
      * Default return is false - header will be shown
+     *
      * @return boolean
      */
     function hide_header() {
@@ -76,14 +77,18 @@ class block_contact_form extends block_base {
                 // Set message that session has timed out.
                 require_login();
             }
-
+            // Still guess user ?
+            if (isguestuser()) {
+                $this->content->text = get_string('mustbeloggedin', 'block_contact_form');
+                return $this->content;
+            }
         }
-        if (isguestuser()) {
-            $this->content->text =  get_string('mustbeloggedin', 'block_contact_form');
-        } else if ($data = $form->get_data()) {
+        if ($data = $form->get_data()) {
             $this->content->text = $this->process_form($data);
         } else {
-            $this->content->text = $form->render();
+            $intro = !empty($this->config->intro) ? $this->config->intro: get_string('intro', 'block_contact_form');
+            $this->content->text = \html_writer::span($intro, 'intro m-y-2');
+            $this->content->text .=  $form->render();
         }
 
         return $this->content;
@@ -101,10 +106,19 @@ class block_contact_form extends block_base {
      */
     public function process_form($data) {
         $emailsender = new \block_contact_form\email_sender($data);
+        $text = \html_writer::start_div('process-message-text');
         if ($emailsender->send_email()) {
-            return get_string('messagesuccess', 'block_contact_form');
+            $text .= \html_writer::div(get_string('messagesuccess', 'block_contact_form'));
         } else {
-            return get_string('messagefailed', 'block_contact_form');
+            $text .= \html_writer::div(get_string('messagefailed', 'block_contact_form'));
         }
+        $renderer = $this->page->get_renderer('core');
+        /** @var core_renderer $renderer */
+        $text .=
+            \html_writer::div(
+                $renderer->single_button(new moodle_url(qualified_me()), get_string('continue'), 'get')
+            , 'm-5');
+        $text .= \html_writer::end_div();
+        return $text;
     }
 }

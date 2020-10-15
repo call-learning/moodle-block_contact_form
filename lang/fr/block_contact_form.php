@@ -23,6 +23,8 @@
  */
 
 $string['configtitle'] = 'Titre du bloc du formulaire de contact';
+$string['configintro'] = 'Texte d\'introduction';
+$string['intro'] = 'Restons en contact! Veuillez compléter ce formulaire pour nous envoyer un message.';
 $string['configmustlogin'] = 'Doit se connecter pour utiliser le formulaire';
 $string['contact_form:addinstance'] = 'Ajouter un nouveau bloc de contact';
 $string['contact_form:myaddinstance'] = 'Ajouter un nouveau bloc de contact au tableau de bord';
@@ -43,5 +45,5 @@ $string['emailcontentsupport'] = '
 $string['emailcontentsupportsubject'] = '[sitefullname] - Contact par "[sendername]"<[senderemail]>';
 
 $string['messagefailed'] = 'Désolé mais nous n\'avons pas réussi à envoyer le message. Merci de revenir plus tard.';
-$string['messagesuccess'] = 'Le message a été envoyé à l \' administrateur du site. Nous vous répondrons dans les plus brefs délais.';
+$string['messagesuccess'] = 'Félicitations ! Le message a été envoyé à l\' administrateur du site. Nous vous répondrons dans les plus brefs délais.';
 $string['mustbeloggedin'] = 'Vous devez être connecté pour utiliser ce formulaire';

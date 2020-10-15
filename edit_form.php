@@ -38,6 +38,11 @@ class block_contact_form_edit_form extends block_edit_form {
         $mform->setType('config_title', PARAM_TEXT);
         $mform->setDefault('config_title', get_string('title', 'block_contact_form'));
 
+        $mform->addElement('text', 'config_intro', get_string('configintro', 'block_contact_form'));
+        $mform->setType('config_intro', PARAM_TEXT);
+        $mform->setDefault('config_intro', get_string('intro', 'block_contact_form'));
+
+
         $mform->addElement('advcheckbox', 'config_mustlogin', get_string('configmustlogin', 'block_contact_form'));
         $mform->setType('config_mustlogin', PARAM_BOOL);
         $mform->setDefault('config_mustlogin', 0);

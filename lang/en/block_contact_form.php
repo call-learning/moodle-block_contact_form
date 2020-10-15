@@ -23,12 +23,14 @@
  */
 
 $string['configtitle'] = 'Contact Form block title';
+$string['configintro'] = 'Introduction text';
+$string['intro'] = 'Let\'s get in touch ! Please fill this form and send us a message.';
 $string['configmustlogin'] = 'Must login to use the form';
 $string['contact_form:addinstance'] = 'Add a new Contact Form block';
 $string['contact_form:myaddinstance'] = 'Add a new Contact Form block to Dashboard';
 $string['newcontactform'] = 'New Contact Form Block';
 $string['pluginname'] = 'Contact Form Block';
-$string['title'] = 'Contact Form';
+
 $string['subject'] = 'Subject';
 $string['message'] = 'Message';
 $string['send'] = 'Send';
@@ -43,6 +45,7 @@ $string['emailcontentsupport'] = '
 $string['emailcontentsupportsubject'] = '[sitefullname] - Contact from "[sendername]"<[senderemail]>';
 
 $string['messagefailed'] = 'Sorry but we failed to send the message. Please come back later';
-$string['messagesuccess'] = 'The message has been sent to the administrator of the site. We will reply as soon
+$string['messagesuccess'] = 'Congratulations ! The message has been sent to the administrator of the site. We will retrieve it as soon
 as possible.';
 $string['mustbeloggedin'] = 'You must be logged in to use this form';
+$string['title'] = 'Contact Form';
