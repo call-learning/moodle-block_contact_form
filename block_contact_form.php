@@ -33,20 +33,25 @@ class block_contact_form extends block_base {
         return true;
     }
 
+    /**
+     * Default return is false - header will be shown
+     * @return boolean
+     */
+    function hide_header() {
+        return true;
+    }
+
     public function applicable_formats() {
         return array('all' => true);
     }
 
+    /**
+     * Update the block title from config values
+     */
     public function specialization() {
-        if (isset($this->config->title)) {
-            $this->title = $this->title = format_string($this->config->title, true, ['context' => $this->context]);
-        } else {
-            $this->title = get_string('newcontactform', 'block_contact_form');
+        if (!empty($this->config->title)) {
+            $this->title = $this->config->title;
         }
-    }
-
-    public function instance_allow_multiple() {
-        return true;
     }
 
     /**
@@ -56,7 +61,6 @@ class block_contact_form extends block_base {
      * @throws coding_exception
      */
     public function get_content() {
-        global $FULLME;
         if ($this->content !== null) {
             return $this->content;
         }
@@ -65,7 +69,18 @@ class block_contact_form extends block_base {
         $this->content = new stdClass;
         $this->content->footer = '';
         $form = new contactform(qualified_me());
-        if ($data = $form->get_data()) {
+        // If we require user to be logged in.
+        if (!empty(get_config('block_contact_form', 'config_mustlogin'))) {
+            // Log them in and then redirect them back to the form.
+            if (!isloggedin()) {
+                // Set message that session has timed out.
+                require_login();
+            }
+
+        }
+        if (isguestuser()) {
+            $this->content->text =  get_string('mustbeloggedin', 'block_contact_form');
+        } else if ($data = $form->get_data()) {
             $this->content->text = $this->process_form($data);
         } else {
             $this->content->text = $form->render();

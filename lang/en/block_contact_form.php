@@ -23,17 +23,19 @@
  */
 
 $string['configtitle'] = 'Contact Form block title';
-$string['contact_form:addinstance'] = 'Add a new HTML block';
-$string['contact_form:myaddinstance'] = 'Add a new HTML block to Dashboard';
+$string['configmustlogin'] = 'Must login to use the form';
+$string['contact_form:addinstance'] = 'Add a new Contact Form block';
+$string['contact_form:myaddinstance'] = 'Add a new Contact Form block to Dashboard';
 $string['newcontactform'] = 'New Contact Form Block';
 $string['pluginname'] = 'Contact Form Block';
-$string['subject'] = 'Sujet';
+$string['title'] = 'Contact Form';
+$string['subject'] = 'Subject';
 $string['message'] = 'Message';
 $string['send'] = 'Send';
 $string['sendfromname'] = 'From name';
 $string['sendfromemail'] = 'From email';
 $string['emailcontentsupport'] = '
-<p>Dear [fromname],</p>
+<p>Dear [supportname],</p>
 <p>A message has been sent through the contact form by "[sendername]"([senderemail]).</p>
 <p>From the site [sitefullname] <a href="[siteurl]">[siteurl]</a></p>
 <hr>';
@@ -43,3 +45,4 @@ $string['emailcontentsupportsubject'] = '[sitefullname] - Contact from "[sendern
 $string['messagefailed'] = 'Sorry but we failed to send the message. Please come back later';
 $string['messagesuccess'] = 'The message has been sent to the administrator of the site. We will reply as soon
 as possible.';
+$string['mustbeloggedin'] = 'You must be logged in to use this form';
