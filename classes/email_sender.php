@@ -37,9 +37,9 @@ defined('MOODLE_INTERNAL') || die();
  */
 class email_sender {
 
-    protected $supportuser;
-    protected $fromemail;
-    protected $fromname;
+    protected $noreplyuser;
+    protected $toemail;
+    protected $toname;
     protected $subject;
     protected $message;
 
@@ -53,20 +53,19 @@ class email_sender {
     public function __construct($formdata) {
         global $CFG;
         $config = get_config('block_contact_form');
-        $supportuser = \core_user::get_support_user();
-        $supportuser->firstname = trim($CFG->supportname);
-        $supportuser->email = trim($CFG->supportemail);
-        if ($config->sendfromemail) {
-            $supportuser->email = $config->sendfromemail;
+        $noreplyuser = \core_user::get_noreply_user();
+
+        $this->toemail = $noreplyuser->email;
+        $this->toname = fullname($noreplyuser);
+        if ($config->sendtoemail) {
+            $this->toemail = $config->sendtoemail;
         }
-        if ($config->sendfromname) {
-            $supportuser->firstname = $config->sendfromname;
+        if ($config->sendtoname) {
+            $this->toname = $config->sendtoname;
         }
         $this->subject = clean_param($formdata->subject, PARAM_TEXT);
         $this->message = clean_param($formdata->message, PARAM_TEXT);
-        $this->fromemail = clean_param($formdata->email, PARAM_EMAIL);
-        $this->fromname = clean_param($formdata->name, PARAM_TEXT);
-        $this->supportuser = $supportuser;
+        $this->noreplyuser = $noreplyuser;
 
     }
 
@@ -79,14 +78,14 @@ class email_sender {
     public function send_email() {
         global $CFG, $SITE;
         // A couple of tags in the message.
-        $tags = array('[sendername]', '[senderemail]', '[supportname]', '[supportemail]',
+        $tags = array('[sendername]', '[senderemail]', '[sendtoname]', '[sendtoemail]',
             '[subject]', '[lang]', '[userip]', '[sitefullname]', '[siteshortname]', '[siteurl]',
             '[http_user_agent]', '[http_referer]'
         );
-        $info = array($this->fromname,
-            $this->fromemail,
-            $this->supportuser->firstname,
-            $this->supportuser->email,
+        $info = array(fullname($this->noreplyuser),
+            $this->noreplyuser->email,
+            $this->toname,
+            $this->toemail,
             $this->subject,
             current_language(), getremoteaddr(), $SITE->fullname, $SITE->shortname, $CFG->wwwroot,
             $_SERVER['HTTP_USER_AGENT'], $_SERVER['HTTP_REFERER']
@@ -101,7 +100,10 @@ class email_sender {
 
         $subject = get_string('emailcontentsupportsubject', 'block_contact_form');
         $subject = str_replace($tags, $info, $subject);
-        return email_to_user($this->supportuser, $this->supportuser,
+        $touser = \core_user::get_noreply_user();
+        $touser->firstname = $this->toname;
+        $touser->email = $this->toemail;
+        return email_to_user($touser, $this->noreplyuser,
             $subject,
             html_to_text($fullmessage),
             $fullmessage,

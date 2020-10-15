@@ -26,13 +26,13 @@ defined('MOODLE_INTERNAL') || die;
 
 if ($ADMIN->fulltree) {
     global $CFG;
-    $settings->add(new admin_setting_configtext('block_contact_form/sendfromemail',
-        get_string('sendfromemail', 'block_contact_form'),
-        get_string('sendfromemail', 'block_contact_form'),
+    $settings->add(new admin_setting_configtext('block_contact_form/sendtoemail',
+        get_string('sendtoemail', 'block_contact_form'),
+        get_string('sendtoemail_desc', 'block_contact_form'),
         $CFG->supportemail));
-    $settings->add(new admin_setting_configtext('block_contact_form/sendfromname',
-        get_string('sendfromname', 'block_contact_form'),
-        get_string('sendfromname', 'block_contact_form'),
+    $settings->add(new admin_setting_configtext('block_contact_form/sendtoname',
+        get_string('sendtoname', 'block_contact_form'),
+        get_string('sendtoname_desc', 'block_contact_form'),
         $CFG->supportname));
 }
 

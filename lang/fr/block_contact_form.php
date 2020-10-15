@@ -34,10 +34,12 @@ $string['title'] = 'Formulaire de contact';
 $string['subject'] = 'Sujet';
 $string['message'] = 'Message';
 $string['send'] = 'Envoyer';
-$string['sendfromname'] = 'De (nom)';
-$string['sendfromemail'] = 'De (email)';
+$string['sendtoname'] = 'Envoyer à (nom)';
+$string['sendtoname_desc'] = 'Envoyer à (nom)';
+$string['sendtoemail'] = 'Envoyer à (email)';
+$string['sendtoemail_desc'] = 'Email vers qui on va envoyer le contenu du formulaire (email du support)';
 $string['emailcontentsupport'] = '
-<p>[supportname],</p>
+<p>[sendtoname],</p>
 <p>Un message a été envoyé via le formulaire de contact par "[sendername]"([senderemail]).</p>
 <p>Du site [sitefullname] <a href="[siteurl]">[siteurl]</a></p>
 <hr>';

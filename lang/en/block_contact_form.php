@@ -34,10 +34,12 @@ $string['pluginname'] = 'Contact Form Block';
 $string['subject'] = 'Subject';
 $string['message'] = 'Message';
 $string['send'] = 'Send';
-$string['sendfromname'] = 'From name';
-$string['sendfromemail'] = 'From email';
+$string['sendtoname'] = 'Send to name';
+$string['sendtoname_desc'] = 'Send to name';
+$string['sendtoemail'] = 'Send to email';
+$string['sendtoemail_desc'] = 'Email to which we will send the content on the contact form';
 $string['emailcontentsupport'] = '
-<p>Dear [supportname],</p>
+<p>Dear [sendtoname],</p>
 <p>A message has been sent through the contact form by "[sendername]"([senderemail]).</p>
 <p>From the site [sitefullname] <a href="[siteurl]">[siteurl]</a></p>
 <hr>';
