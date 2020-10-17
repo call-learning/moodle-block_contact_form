@@ -86,9 +86,11 @@ class block_contact_form extends block_base {
         if ($data = $form->get_data()) {
             $this->content->text = $this->process_form($data);
         } else {
-            $intro = !empty($this->config->intro) ? $this->config->intro: get_string('intro', 'block_contact_form');
-            $this->content->text = \html_writer::span($intro, 'intro m-y-2');
+            $intro = !empty($this->config->intro) ? $this->config->intro: '';
+            $this->content->text = \html_writer::start_div('container');
+            $this->content->text .= \html_writer::span($intro, 'intro m-y-2');
             $this->content->text .=  $form->render();
+            $this->content->text .= \html_writer::end_div('container');
         }
 
         return $this->content;
