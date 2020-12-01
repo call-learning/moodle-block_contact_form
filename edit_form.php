@@ -30,6 +30,12 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class block_contact_form_edit_form extends block_edit_form {
+    /**
+     * Add field definition
+     *
+     * @param object $mform
+     * @throws coding_exception
+     */
     protected function specific_definition($mform) {
         // Fields for editing HTML block title and contents.
         $mform->addElement('header', 'configheader', get_string('blocksettings', 'block'));
@@ -41,7 +47,6 @@ class block_contact_form_edit_form extends block_edit_form {
         $mform->addElement('text', 'config_intro', get_string('configintro', 'block_contact_form'));
         $mform->setType('config_intro', PARAM_TEXT);
         $mform->setDefault('config_intro', get_string('intro', 'block_contact_form'));
-
 
         $mform->addElement('advcheckbox', 'config_mustlogin', get_string('configmustlogin', 'block_contact_form'));
         $mform->setType('config_mustlogin', PARAM_BOOL);

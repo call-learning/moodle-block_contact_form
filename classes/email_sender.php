@@ -37,23 +37,43 @@ defined('MOODLE_INTERNAL') || die();
  */
 class email_sender {
 
+    /**
+     * @var bool|\stdClass no reply user
+     */
     protected $noreplyuser;
+    /**
+     * @var string email to
+     */
     protected $toemail;
+    /**
+     * @var string name to
+     */
     protected $toname;
+    /**
+     * @var string from name
+     */
     protected $fromname;
+    /**
+     * @var stringfrom email
+     */
     protected $fromemail;
+    /**
+     * @var string subject
+     */
     protected $subject;
+    /**
+     * @var string message
+     */
     protected $message;
 
     /**
      * email_sender constructor.
      *
-     * @param $formdata
+     * @param \stdClass $formdata
      * @throws \coding_exception
      * @throws \dml_exception
      */
     public function __construct($formdata) {
-        global $CFG;
         $config = get_config('block_contact_form');
         $noreplyuser = \core_user::get_noreply_user();
 
@@ -83,16 +103,18 @@ class email_sender {
         global $CFG, $SITE;
         // A couple of tags in the message.
         $tags = array('[sendername]', '[senderemail]', '[sendtoname]', '[sendtoemail]',
-            '[subject]', '[lang]', '[userip]', '[sitefullname]', '[siteshortname]', '[siteurl]',
-            '[http_user_agent]', '[http_referer]'
+            '[subject]', '[lang]', '[userip]', '[sitefullname]', '[siteshortname]', '[siteurl]'
         );
         $info = array( $this->fromname,
             $this->fromemail,
             $this->toname,
             $this->toemail,
             $this->subject,
-            current_language(), getremoteaddr(), $SITE->fullname, $SITE->shortname, $CFG->wwwroot,
-            $_SERVER['HTTP_USER_AGENT'], $_SERVER['HTTP_REFERER']
+            current_language(),
+            getremoteaddr(),
+            $SITE->fullname,
+            $SITE->shortname,
+            $CFG->wwwroot
         );
 
         // Create the footer - Add some system information.
@@ -107,7 +129,8 @@ class email_sender {
         $touser = \core_user::get_noreply_user();
         $touser->firstname = $this->toname;
         $touser->email = $this->toemail;
-        return email_to_user($touser, $this->noreplyuser,
+        return email_to_user($touser,
+            $this->noreplyuser,
             $subject,
             html_to_text($fullmessage),
             $fullmessage,

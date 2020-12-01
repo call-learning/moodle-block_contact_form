@@ -37,6 +37,9 @@ defined('MOODLE_INTERNAL') || die();
  */
 class provider implements null_provider {
 
+    /**
+     * Get reason
+     */
     public static function get_reason(): string {
         return 'privacy:metadata';
     }

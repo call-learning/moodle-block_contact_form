@@ -24,6 +24,6 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2020061500;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2015111600;        // Requires this Moodle version
-$plugin->component = 'block_contact_form';      // Full name of the plugin (used for diagnostics)
+$plugin->version   = 2020061500;        // The current plugin version (Date: YYYYMMDDXX).
+$plugin->requires  = 2015111600;        // Requires this Moodle version.
+$plugin->component = 'block_contact_form';      // Full name of the plugin (used for diagnostics).

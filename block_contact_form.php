@@ -13,8 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-use block_contact_form\form\contactform;
-
 /**
  * Form for editing Contact Form block instances.
  *
@@ -23,12 +21,31 @@ use block_contact_form\form\contactform;
  * @copyright 2020 - CALL Learning - Laurent David <laurent@call-learning>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+use block_contact_form\form\contactform;
+
+/**
+ * Class block_contact_form
+ *
+ * @package   block_contact_form
+ * @copyright 2020 - CALL Learning - Laurent David <laurent@call-learning>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class block_contact_form extends block_base {
 
+    /**
+     * Init
+     *
+     * @throws coding_exception
+     */
     public function init() {
         $this->title = get_string('pluginname', 'block_contact_form');
     }
 
+    /**
+     * Has config
+     *
+     * @return bool
+     */
     public function has_config() {
         return true;
     }
@@ -38,10 +55,15 @@ class block_contact_form extends block_base {
      *
      * @return boolean
      */
-    function hide_header() {
+    public function hide_header() {
         return true;
     }
 
+    /**
+     * Get applicable formats
+     *
+     * @return array|bool[]
+     */
     public function applicable_formats() {
         return array('all' => true);
     }
@@ -86,10 +108,10 @@ class block_contact_form extends block_base {
         if ($data = $form->get_data()) {
             $this->content->text = $this->process_form($data);
         } else {
-            $intro = !empty($this->config->intro) ? $this->config->intro: '';
+            $intro = !empty($this->config->intro) ? $this->config->intro : '';
             $this->content->text = \html_writer::start_div('container');
             $this->content->text .= \html_writer::span($intro, 'intro m-y-2');
-            $this->content->text .=  $form->render();
+            $this->content->text .= $form->render();
             $this->content->text .= \html_writer::end_div('container');
         }
 
@@ -99,7 +121,7 @@ class block_contact_form extends block_base {
     /**
      * Contact form
      *
-     * @param $data
+     * @param stdClass $data
      * @return string
      * @throws coding_exception
      * @throws dml_exception
@@ -115,11 +137,10 @@ class block_contact_form extends block_base {
             $text .= \html_writer::div(get_string('messagefailed', 'block_contact_form'));
         }
         $renderer = $this->page->get_renderer('core');
-        /** @var core_renderer $renderer */
         $text .=
             \html_writer::div(
                 $renderer->single_button(new moodle_url(qualified_me()), get_string('continue'), 'get')
-            , 'm-5');
+                , 'm-5');
         $text .= \html_writer::end_div();
         return $text;
     }
