@@ -18,12 +18,12 @@
  * Version details
  *
  * @package   block_contact_form
- * @copyright 2020 - CALL Learning - Laurent David <laurent@call-learning>
+ * @copyright 2020 - CALL Learning - Laurent David <laurent@call-learning.fr>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2020061500;        // The current plugin version (Date: YYYYMMDDXX).
+$plugin->version   = 2020061501;        // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires  = 2015111600;        // Requires this Moodle version.
 $plugin->component = 'block_contact_form';      // Full name of the plugin (used for diagnostics).

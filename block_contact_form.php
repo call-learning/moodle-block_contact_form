@@ -18,7 +18,7 @@
  *
  *
  * @package   block_contact_form
- * @copyright 2020 - CALL Learning - Laurent David <laurent@call-learning>
+ * @copyright 2020 - CALL Learning - Laurent David <laurent@call-learning.fr>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 use block_contact_form\form\contactform;
@@ -27,7 +27,7 @@ use block_contact_form\form\contactform;
  * Class block_contact_form
  *
  * @package   block_contact_form
- * @copyright 2020 - CALL Learning - Laurent David <laurent@call-learning>
+ * @copyright 2020 - CALL Learning - Laurent David <laurent@call-learning.fr>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class block_contact_form extends block_base {

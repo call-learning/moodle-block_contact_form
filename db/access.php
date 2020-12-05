@@ -18,7 +18,7 @@
  * Contact Form block caps.
  *
  * @package    block_contact_form
- * @copyright 2020 - CALL Learning - Laurent David <laurent@call-learning>
+ * @copyright 2020 - CALL Learning - Laurent David <laurent@call-learning.fr>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -30,10 +30,8 @@ $capabilities = array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
         'archetypes' => array(
-            'user' => CAP_ALLOW
+            'manager' => CAP_ALLOW // We don't want anyone to add this kind of block anywhere.
         ),
-
-        'clonepermissionsfrom' => 'moodle/my:manageblocks'
     ),
 
     'block/contact_form:addinstance' => array(
