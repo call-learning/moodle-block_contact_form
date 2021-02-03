@@ -42,6 +42,7 @@ class contactform extends \moodleform {
      * @throws \coding_exception
      */
     protected function definition() {
+        global $CFG;
         $mform = $this->_form;
         $mform->addElement('text', 'name', get_string('name'));
         $mform->setType('name', PARAM_TEXT);
@@ -63,7 +64,7 @@ class contactform extends \moodleform {
         $mform->setType('message', PARAM_CLEANHTML);
         $mform->addRule('message', null, 'required', null, 'client');
         if (!empty($CFG->recaptchapublickey) && !empty($CFG->recaptchaprivatekey) &&
-            !isloggedin() || isguestuser()) {
+            (!isloggedin() || isguestuser())) {
             $mform->addElement('recaptcha', 'recaptcha_element', get_string('security_question', 'auth'));
         }
 
