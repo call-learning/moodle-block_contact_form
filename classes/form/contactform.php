@@ -42,7 +42,6 @@ class contactform extends \moodleform {
      * @throws \coding_exception
      */
     protected function definition() {
-        global $CFG;
         $mform = $this->_form;
         $mform->addElement('text', 'name', get_string('name'));
         $mform->setType('name', PARAM_TEXT);
@@ -63,12 +62,50 @@ class contactform extends \moodleform {
             'wrap="virtual" rows="8" cols="70"');
         $mform->setType('message', PARAM_CLEANHTML);
         $mform->addRule('message', null, 'required', null, 'client');
-        if (!empty($CFG->recaptchapublickey) && !empty($CFG->recaptchaprivatekey) &&
-            (!isloggedin() || isguestuser())) {
+        if ($this->is_captcha_enabled()) {
             $mform->addElement('recaptcha', 'recaptcha_element', get_string('security_question', 'auth'));
         }
 
         // Show strings - submit button.
         $mform->addElement('submit', 'submit', get_string('send', 'block_contact_form'));
     }
+
+    /**
+     * Check if we need to display captcha
+     * @return bool
+     * @throws \coding_exception
+     */
+    protected function is_captcha_enabled() {
+        global $CFG;
+        return !empty($CFG->recaptchapublickey) && !empty($CFG->recaptchaprivatekey) &&
+            (!isloggedin() || isguestuser());
+    }
+
+
+    /**
+     * Validate user supplied data on the signup form.
+     *
+     * @param array $data array of ("fieldname"=>value) of submitted data
+     * @param array $files array of uploaded files "element_name"=>tmp_file_path
+     * @return array of "element_name"=>"error_description" if there are errors,
+     *         or an empty array if everything is OK (true allowed for backwards compatibility too).
+     */
+    public function validation($data, $files) {
+        $errors = parent::validation($data, $files);
+
+        if ($this->is_captcha_enabled()) {
+            $recaptchaelement = $this->_form->getElement('recaptcha_element');
+            if (!empty($this->_form->_submitValues['g-recaptcha-response'])) {
+                $response = $this->_form->_submitValues['g-recaptcha-response'];
+                if (!$recaptchaelement->verify($response)) {
+                    $errors['recaptcha_element'] = get_string('incorrectpleasetryagain', 'block_contact_form');
+                }
+            } else {
+                $errors['recaptcha_element'] = get_string('missingrecaptchachallengefield');
+            }
+        }
+
+        return $errors;
+    }
+
 }

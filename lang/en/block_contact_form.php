@@ -28,6 +28,7 @@ $string['intro'] = 'Let\'s get in touch ! Please fill this form and send us a me
 $string['configmustlogin'] = 'Must login to use the form';
 $string['contact_form:addinstance'] = 'Add a new Contact Form block';
 $string['contact_form:myaddinstance'] = 'Add a new Contact Form block to Dashboard';
+$string['incorrectpleasetryagain'] = 'Incorrect. Please try again.';
 $string['newcontactform'] = 'New Contact Form Block';
 $string['pluginname'] = 'Contact Form Block';
 

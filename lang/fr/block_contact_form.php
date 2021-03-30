@@ -28,6 +28,7 @@ $string['intro'] = 'Restons en contact! Veuillez compléter ce formulaire pour n
 $string['configmustlogin'] = 'Doit se connecter pour utiliser le formulaire';
 $string['contact_form:addinstance'] = 'Ajouter un nouveau bloc de contact';
 $string['contact_form:myaddinstance'] = 'Ajouter un nouveau bloc de contact au tableau de bord';
+$string['incorrectpleasetryagain'] = 'Incorrect. Essayez encore.';
 $string['newcontactform'] = 'Nouveau bloc de formulaire de contact';
 $string['pluginname'] = 'Bloc de Formulaire de contact';
 $string['title'] = 'Formulaire de contact';
